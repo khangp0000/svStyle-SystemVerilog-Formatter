@@ -9,4 +9,4 @@ Example on my recommended arguments which use GNU style and 2-space tab setting:
 
 `$ svStyle fileNeedFormat.sv --style=gnu -s2`
 
-Bug report: khangp0000@gmail.com
+Bug report: https://github.com/khangp0000/svStyle-SystemVerilog-Formatter/
