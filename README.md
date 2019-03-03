@@ -1,12 +1,12 @@
-# iStyle SystemVerilog Formatter
-A port to SystemVerilog by updating pre-existed repository https://github.com/thomasrussellmurphy/istyle-verilog-formatter
+# svStyle SystemVerilog Formatter
+A port to SystemVerilog by updating pre-existed repository https://github.com/thomasrussellmurphy/svStyle-verilog-formatter
 
 All option is the same, please go to above site for more detail about argument option. 
 
-Should work also with verilog source file as long as SystemVerilog keywords is not used. This is just a copy of istyle-verilog-formatter with updating keywords list.
+Should work also with Verilog source file as long as SystemVerilog keywords is not used. This is just a copy of iStyle-verilog-formatter with updating keywords list.
 
 Example on my recommended arguments which use GNU style and 2-space tab setting: 
 
-`$ iStyle fileNeedFormat.sv --style=gnu -s2`
+`$ svStyle fileNeedFormat.sv --style=gnu -s2`
 
 Bug report: khangp0000@gmail.com

@@ -198,7 +198,7 @@ bool parseOption(ASFormatter &formatter, const string &arg,
   } else if ((arg == "X") || (arg == "errors-to-standard-output")) {
     _err = &cout;
   } else if ((arg == "v") || (arg == "version")) {
-    (*_err) << "iStyle " << _version << endl;
+    (*_err) << "svStyle " << _version << endl;
   } else {
     (*_err) << errorInfo << arg << endl;
     return false;  // unknown option
@@ -271,7 +271,7 @@ void printHelpTitle() {
   cout << endl;
 
   SetColor(10, 0);
-  cout << "iStyle " << _version;
+  cout << "svStyle " << _version;
 
   SetColor(2, 0);
   cout << " (Fast and Free Automatic Formatter for Verilog Source Code)\n";
@@ -284,10 +284,10 @@ void printHelpTitle() {
 void printHelpSimple(int isGetchar = 0) {
   SetColor(14, 0);
   cout << endl;
-  cout << "Usage  :  iStyle [options] Foo.v  B*r.v  [...]\n";
+  cout << "Usage  :  svStyle [options] Foo.v  B*r.v  [...]\n";
   cout << endl;
   SetColor(7, 0);
-  cout << "For help on options, type 'iStyle -h'";
+  cout << "For help on options, type 'svStyle -h'";
 
   if (isGetchar == 1) {
     cout << ", Press ENTER to exit." << endl;
@@ -301,7 +301,7 @@ void printHelpSimple(int isGetchar = 0) {
 void printHelpFull() {
   SetColor(14, 0);
   cout << endl;
-  cout << "Usage  :  iStyle [options] Foo.v  B*r.v  [...]\n";
+  cout << "Usage  :  svStyle [options] Foo.v  B*r.v  [...]\n";
   cout << endl;
   SetColor(7, 0);
   cout << "When indenting a specific file, the resulting indented file RETAINS "
@@ -310,7 +310,7 @@ void printHelpFull() {
           "a\n";
   cout << "suffix of \".orig\" added to the original filename. \n";
   cout << endl;
-  cout << "By default, iStyle is set up to indent Verilog files, with 4 spaces "
+  cout << "By default, svStyle is set up to indent Verilog files, with 4 spaces "
           "per \n";
   cout << "indent, a maximal indentation of 40 spaces inside continuous "
           "statements,\n";
@@ -354,7 +354,7 @@ void printHelpFull() {
   cout << "    -T#   OR   --force-indent=tab=#\n";
   cout << "    Indent using tab characters, assuming that each\n";
   cout << "    tab is # spaces long. Force tabs to be used in areas\n";
-  cout << "    iStyle would prefer to use spaces.\n";
+  cout << "    sStyle would prefer to use spaces.\n";
   cout << endl;
   cout << "    -B   OR   --indent-brackets\n";
   cout << "    Add extra indentation to 'begin' and 'end' block brackets.\n";
@@ -454,16 +454,16 @@ void printHelpFull() {
   cout << "Default options file:\n";
   SetColor(7, 0);
   cout << "---------------------\n";
-  cout << "    iStyle looks for a default options file in the following "
+  cout << "    sStyle looks for a default options file in the following "
           "order:\n";
-  cout << "    1. The contents of the ISTYLE_OPTIONS environment\n";
+  cout << "    1. The contents of the SVSTYLE_OPTIONS environment\n";
   cout << "       variable if it exists.\n";
-  cout << "    2. The file called .iStylerc in the directory pointed to by "
+  cout << "    2. The file called .sStylerc in the directory pointed to by "
           "the\n";
-  cout << "       HOME environment variable ( i.e. $HOME/.iStylerc ).\n";
-  cout << "    3. The file called .iStylerc in the directory pointed to by "
+  cout << "       HOME environment variable ( i.e. $HOME/.sStylerc ).\n";
+  cout << "    3. The file called .sStylerc in the directory pointed to by "
           "the\n";
-  cout << "       HOMEPATH environment variable ( i.e. %HOMEPATH%\\.iStylerc "
+  cout << "       HOMEPATH environment variable ( i.e. %HOMEPATH%\\.sStylerc "
           ").\n";
   cout << "    If a default options file is found, the options in this file\n";
   cout << "    will be parsed BEFORE the command-line options.\n";
@@ -523,18 +523,18 @@ int main(int argc, char *argv[]) {
   // parse options file
   if (shouldParseOptionsFile) {
     if (optionsFileName.compare("") == 0) {
-      char *env = getenv("ISTYLE_OPTIONS");
+      char *env = getenv("SVSTYLE_OPTIONS");
       if (env != NULL) optionsFileName = string(env);
     }
     if (optionsFileName.compare("") == 0) {
       char *env = getenv("HOME");
-      if (env != NULL) optionsFileName = string(env) + string("/.iStylerc");
+      if (env != NULL) optionsFileName = string(env) + string("/.sStylerc");
     }
     if (optionsFileName.compare("") == 0) {
       char *drive = getenv("HOMEDRIVE");
       char *path = getenv("HOMEPATH");
       if (path != NULL)
-        optionsFileName = string(drive) + string(path) + string("/.iStylerc");
+        optionsFileName = string(drive) + string(path) + string("/.sStylerc");
     }
 
     if (!optionsFileName.empty()) {

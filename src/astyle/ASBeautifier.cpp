@@ -527,8 +527,8 @@ string ASBeautifier::beautify(const string &originalLine) {
   // so that possible comments starting in the line continue in
   // relation to the preliminary white-space.
   if (!isInComment) {
-    leadingWhiteSpaces = 0;
-    while (leadingWhiteSpaces < originalLine.length() &&
+    leadingWhiteSpaces = 0U;
+    while (leadingWhiteSpaces < (int)originalLine.length() &&
            originalLine[leadingWhiteSpaces] <= 0x20)
       leadingWhiteSpaces++;
 
@@ -536,8 +536,8 @@ string ASBeautifier::beautify(const string &originalLine) {
   } else {
     int trimSize;
     for (trimSize = 0;
-         trimSize < originalLine.length() && trimSize < leadingWhiteSpaces &&
-         originalLine[trimSize] <= 0x20;
+         trimSize < (int)originalLine.length() &&
+         trimSize < leadingWhiteSpaces && originalLine[trimSize] <= 0x20;
          trimSize++)
       ;
     line = originalLine.substr(trimSize);
@@ -608,7 +608,7 @@ string ASBeautifier::beautify(const string &originalLine) {
         if (!waitingBeautifierStackLengthStack->empty()) {
           stackLength = waitingBeautifierStackLengthStack->back();
           waitingBeautifierStackLengthStack->pop_back();
-          while (waitingBeautifierStack->size() > stackLength) {
+          while ((int)waitingBeautifierStack->size() > stackLength) {
             beautifier = waitingBeautifierStack->back();
             waitingBeautifierStack->pop_back();
             delete beautifier;
@@ -618,7 +618,7 @@ string ASBeautifier::beautify(const string &originalLine) {
         if (!activeBeautifierStackLengthStack->empty()) {
           stackLength = activeBeautifierStackLengthStack->back();
           activeBeautifierStackLengthStack->pop_back();
-          while (activeBeautifierStack->size() > stackLength) {
+          while ((int)activeBeautifierStack->size() > stackLength) {
             beautifier = activeBeautifierStack->back();
             activeBeautifierStack->pop_back();
             delete beautifier;
@@ -806,7 +806,7 @@ string ASBeautifier::beautify(const string &originalLine) {
         if (!inStatementIndentStackSizeStack->empty()) {
           int previousIndentStackSize = inStatementIndentStackSizeStack->back();
           inStatementIndentStackSizeStack->pop_back();
-          while (previousIndentStackSize < inStatementIndentStack->size())
+          while (previousIndentStackSize < (int)inStatementIndentStack->size())
             inStatementIndentStack->pop_back();
 
           if (!parenIndentStack->empty()) {
@@ -913,7 +913,7 @@ string ASBeautifier::beautify(const string &originalLine) {
         !inStatementIndentStackSizeStack->empty())
       while (inStatementIndentStackSizeStack->back() +
                  (parenDepth > 0 ? 1 : 0) <
-             inStatementIndentStack->size())
+             (int)inStatementIndentStack->size())
         inStatementIndentStack->pop_back();
 
     // handle ends of statements

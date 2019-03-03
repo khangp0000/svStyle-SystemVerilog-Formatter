@@ -302,7 +302,7 @@ string ASFormatter::nextLine() {
       appendCurrentChar();
 
       // explicitely break a line when a line comment's end is found.
-      if ((charNum + 1) == currentLine.length()) {
+      if ((charNum + 1) == (int) currentLine.length()) {
         isInLineBreak = true;
         isInLineComment = false;
         isImmediatelyPostLineComment = true;
